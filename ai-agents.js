@@ -25,8 +25,13 @@ const analyzeGoal = async() => {
         const completion = await openai.chat.completions.create({
         model: "stepfun/step-3.5-flash:free",
         messages: [
-      { role: "user", content: promt }
+          {
+            role: "system",
+            content: "You are a helpful assistant that helps users break down their goals into smaller, manageable tasks and create a step-by-step plan to achieve them."
+          },
+          { role: "user", content: promt }
         ],
+        temperature: 0.7,
     })
     console.log(completion.choices[0].message)
     }
